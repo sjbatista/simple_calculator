@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .background{
+            text-align: center;
+            background-image: linear-gradient(45deg,black,violet);
+            height: 100vh;
+            color: white;
+            font-family: Arial;
+        }
+        .calculator{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.4);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 15px;
+            padding: 15px;
+        }
+        .button{
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            background-color: gray;
+            border: none;
+            color: white;
+            margin: 3px;
+        }
+        .button:hover{
+            background-color: black;
+        }
+        #result{
+            color: black;
+            background-color: white;
+            width: 213px;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            text-align: right;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+
+        <div class="calculator">
+            <h1>Calculator</h1>
+            <p id="result"></p>
+            <table>
+                <tr>
+                    <td><button class="button" onclick="clean()">C</button></td>
+                    <td><button class="button" onclick="backspaceChar()"><</button></td>
+                    <td><button class="button" onclick="insert('/')">/</button></td>
+                    <td><button class="button" onclick="insert('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('7')">7</button></td>
+                    <td><button class="button" onclick="insert('8')">8</button></td>
+                    <td><button class="button" onclick="insert('9')">9</button></td>
+                    <td><button class="button" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('4')">4</button></td>
+                    <td><button class="button" onclick="insert('5')">5</button></td>
+                    <td><button class="button" onclick="insert('6')">6</button></td>
+                    <td><button class="button" onclick="insert('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('1')">1</button></td>
+                    <td><button class="button" onclick="insert('2')">2</button></td>
+                    <td><button class="button" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="button" style="height: 106px;" onclick="calcExp()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="button" style="width: 106px;" onclick="insert('0')">0</button></td>
+                    <td><button class="button" onclick="insert('.')">.</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        function insert(x){
+            var xchar = document.getElementById('result').innerHTML;
+            document.getElementById('result').innerHTML = xchar + x;
+        }
+
+        function clean(){
+            document.getElementById('result').innerHTML = "";
+        }
+
+        function backspaceChar(){
+            var xchar = document.getElementById('result').innerHTML;
+            document.getElementById('result').innerHTML = xchar.substring(0, xchar.length -1);
+        }
+
+        function calcExp(){
+            var xchar = document.getElementById('result').innerHTML;
+            if(xchar){
+                document.getElementById('result').innerHTML = eval(xchar);
+            }
+            else{
+                document.getElementById('result').innerHTML = '?';
+            }
+        }
+    </script>
+</body>
+</html>
